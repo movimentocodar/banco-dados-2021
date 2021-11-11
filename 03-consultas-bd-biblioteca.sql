@@ -1,0 +1,46 @@
+/* 
+	Contador de quantidade 
+	de livros por idioma 
+*/
+SELECT A.IDIOMA AS IDIOMA, COUNT(IDIOMA) 
+AS QUANTIDADE FROM LIVROS A
+GROUP BY A.IDIOMA
+ORDER BY QUANTIDADE DESC; 
+
+/* 
+	Livros que foram emprestados nos últimos sete dias,
+	ordenados do empréstimo mais antigo para o mais recente.
+*/
+SELECT A.TITULO AS LIVRO, DATE_FORMAT(B.DATA_RETIRADA, '%d/%m/%Y') AS DATA_DE_RETIRADA
+FROM EMPRESTIMOS B 
+INNER JOIN 
+LIVROS A ON A.ISBN = B.LIVRO
+WHERE B.DATA_RETIRADA >= DATE(NOW()) - INTERVAL 7 DAY
+ORDER BY B.DATA_RETIRADA ASC;
+
+/*
+	Todos os livros que contém a palavra 'java' 
+	na descrição (Independente de maiúsculas ou minúsculas).
+*/
+SELECT TITULO AS LIVRO FROM LIVROS
+WHERE TITULO LIKE '%java%';
+
+/* 
+	Apresente os dados de livros emprestados que estão com a devolução atrasada 
+    e indique se tem ou não uma multa 
+*/
+SELECT A.TITULO AS LIVRO, B.NOME AS USUARIO, B.EMAIL AS EMAIL,
+DATE_FORMAT(C.DATA_RETIRADA, '%d/%m/%Y') AS DATA_DE_EMPRESTIMO,
+C.QUANTIDADE_DIAS AS DIAS_EMPRESTADOS,
+DATEDIFF(NOW(), DATE_ADD(C.DATA_RETIRADA, 
+INTERVAL C.QUANTIDADE_DIAS DAY)) AS DIAS_ATRASADOS,
+	IF(DATEDIFF(NOW(), DATE_ADD(C.DATA_RETIRADA, INTERVAL C.QUANTIDADE_DIAS DAY)) >= 5 
+    AND STATUS_DEVOLUCAO = 0, "COM MULTA", "SEM MULTA") AS LIVRO_MULTA
+FROM usuarios B
+JOIN EMPRESTIMOS C ON B.CPF = C.USUARIO
+JOIN LIVROS A ON C.LIVRO = A.ISBN
+WHERE DATEDIFF(NOW(), DATE_ADD(C.DATA_RETIRADA, INTERVAL C.QUANTIDADE_DIAS DAY)) > 0;
+
+
+
+
