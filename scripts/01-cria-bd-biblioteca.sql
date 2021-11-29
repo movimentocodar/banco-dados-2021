@@ -47,8 +47,8 @@ USE Biblioteca;
 CREATE TABLE Emprestimo
 (EmprestimoID int PRIMARY KEY AUTO_INCREMENT,
 Data_retirada DATE NOT NULL,
-QTD_dias_para_emprestimo int NOT NULL,
-Devolvido bit NOT NULL,
+QTD_dias_para_emprestimo int NOT NULL DEFAULT 20,
+Devolvido bit NOT NULL DEFAULT 0,
 ISBN VARCHAR(10) NOT NULL,
 CPF VARCHAR(11) NOT NULL,
 FOREIGN KEY (ISBN) REFERENCES Livro(ISBN),

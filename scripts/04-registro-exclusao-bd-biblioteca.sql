@@ -23,7 +23,13 @@ delimiter ;
 SHOW TRIGGERS;
 
 USE Biblioteca;
-select * from emprestimo;
-
+SET autocommit=OFF;
+START TRANSACTION;
 USE Biblioteca;
+select * from emprestimo;
 DELETE FROM Emprestimo WHERE Devolvido = 1;
+USE Biblioteca;
+select * from emprestimo;
+USE Biblioteca;
+select * from Historico_Emprestimos;
+COMMIT;
