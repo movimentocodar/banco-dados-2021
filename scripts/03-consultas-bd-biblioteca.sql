@@ -10,7 +10,7 @@ A data deve estar no formato mostrado abaixo.
 Levando em consideração a data 01/10/2020 caso queira a data atual alterar a linha 18 para:
 BETWEEN TIMESTAMP(DATE_SUB(NOW(), INTERVAL 7 day)) AND NOW()*/
  
-SELECT LI.ISBN AS LIVRO , date_format(EM.DATA_DE_RETIRADA, "%d/%1/%Y") AS DATA_EMPRESTIMO 
+SELECT LI.TITULO AS LIVRO , date_format(EM.DATA_DE_RETIRADA, "%d/%1/%Y") AS DATA_EMPRESTIMO 
 FROM EMPRESTIMO EM
 INNER JOIN LIVRO LI ON EM.ISBN = LI.ISBN
 Where  EM.DATA_DE_RETIRADA 
@@ -18,7 +18,7 @@ BETWEEN TIMESTAMP(DATE_SUB('2020-10-01', INTERVAL 7 day)) AND '2020-10-01'
 order by EM.DATA_DE_RETIRADA ASC;
 
 -- Todos os livros que contém a palavra 'java' na descrição (Independente de maiúsculas ou minúsculas).
-SELECT * FROM LIVRO WHERE TITULO LIKE '%java%';
+SELECT TITULO AS LIVRO FROM LIVRO WHERE TITULO LIKE '%java%';
 
 /* Apresente os dados de livros emprestados que estão com a devolução atrasada e indique se tem ou não uma multa.
 A regra do campo ​ MULTA ​ é:

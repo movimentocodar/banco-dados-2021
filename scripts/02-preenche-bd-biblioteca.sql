@@ -17,7 +17,7 @@ insert into `EDITORA` VALUES (null,'Casa de Codigo', '1993-07-10'       );
 
 -- Insert Table Livro
 insert into `LIVRO` VALUES (8536527269,'Java : Ensino didático', '2018-02-03', 336, 'PORTUGUES', 1, 2 					       );
-insert into `LIVRO` VALUES (8543004799,'Como Programar em JAVA'   , '2016-06-24', 968, 'PORTUGUES', 4, 3 					   );
+insert into `LIVRO` VALUES (8543004799,'Como Programar em jaVa'   , '2016-06-24', 968, 'PORTUGUES', 4, 3 					   );
 insert into `LIVRO` VALUES (8539609061,'HTML5 e CSS3'          , '2016-04-02', 282, 'PORTUGUES', 3, 5					       );
 insert into `LIVRO` VALUES (8521637349,'IA- Uma Abordagem de Aprendizado de Máquina', '2021-03-12', 336, 'PORTUGUES', 6, 4     );
 insert into `LIVRO` VALUES (8550800651,'Livro - Domain-Driven Design', '2021-03-12', 528, 'INGLES', 5, 1				       );
